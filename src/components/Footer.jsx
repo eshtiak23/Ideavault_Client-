@@ -43,14 +43,15 @@ export default function Footer() {
             </div>
           </div>
 
-          {/* contact */}
+          {/* Contact Section */}
+
           <div>
             <h3 className="text-xl font-semibold mb-4 text-purple-700">
               Contact
             </h3>
 
-            <p className="text-gray-600">Email: ideavault@gmail.com</p>
-            <p className="text-gray-600 mt-2">Phone: +880 1700-000000</p>
+            <p className="text-gray-600">Email: ashtagil@gmail.com</p>
+            <p className="text-gray-600 mt-2">Phone: +88024545554</p>
 
             <div className="flex gap-4 mt-5">
               <a

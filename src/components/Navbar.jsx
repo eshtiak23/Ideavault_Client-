@@ -5,13 +5,15 @@ export default function Navbar() {
     <nav className="sticky top-0 z-50 bg-white/80 backdrop-blur-md border-b border-purple-100">
       <div className="container-box flex items-center justify-between py-4">
         
-        {/* logo */}
+        {/* logo section */}
+
         <Link to="/" className="text-3xl font-bold">
           <span className="text-sky-500">Idea</span>
           <span className="text-purple-600">Vault</span>
         </Link>
 
-        {/* links */}
+        {/* links section */}
+
         <div className="hidden md:flex items-center gap-6">
           <Link className="nav-link" to="/">
             Home
@@ -34,7 +36,8 @@ export default function Navbar() {
           </Link>
         </div>
 
-        {/* auth buttons */}
+        {/* auth_buttons */}
+        
         <div className="flex items-center gap-3">
           <Link
             to="/login"
