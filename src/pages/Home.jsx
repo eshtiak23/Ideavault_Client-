@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import WhyIdeaVault from "../components/WhyIdeaVault";
+import CategoriesPreview from "../components/CategoriesPreview";
 import IdeaCard from "../components/IdeaCard";
 
 const slides = [
@@ -156,6 +158,11 @@ export default function Home() {
           ))}
         </div>
       </section>
+
+       <WhyIdeaVault />
+      <CategoriesPreview />
+
+
     </div>
   );
 }
