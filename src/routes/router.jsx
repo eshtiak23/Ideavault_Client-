@@ -5,6 +5,7 @@ import App from "../App";
 import Home from "../pages/Home";
 import Ideas from "../pages/Ideas";
 import AddIdea from "../pages/AddIdea";
+import PrivateRoute from "../components/PrivateRoute";
 import IdeaDetails from "../pages/IdeaDetails";
 import MyIdeas from "../pages/MyIdeas";
 import MyInteractions from "../pages/MyInteractions";
@@ -25,21 +26,33 @@ const router = createBrowserRouter([
         path: "/ideas",
         element: <Ideas />,
       },
-      {
-        path: "/add-idea",
-        element: <AddIdea />,
-      },
+    {
+  path: "/add-idea",
+  element: (
+    <PrivateRoute>
+      <AddIdea />
+    </PrivateRoute>
+  ),
+},
       {
         path: "/ideas/:id",
         element: <IdeaDetails />,
       },
-      {
-        path: "/my-ideas",
-        element: <MyIdeas />,
-      },
+     {
+  path: "/my-ideas",
+  element: (
+    <PrivateRoute>
+      <MyIdeas />
+    </PrivateRoute>
+  ),
+},
       {
         path: "/my-interactions",
-        element: <MyInteractions />,
+        element: (
+          <PrivateRoute>
+            <MyInteractions />
+          </PrivateRoute>
+        ),
       },
       {
         path: "/login",
