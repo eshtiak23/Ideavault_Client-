@@ -2,31 +2,43 @@ import { Link } from "react-router-dom";
 
 export default function IdeaCard({ idea }) {
   return (
-    <div className="bg-white rounded-2xl shadow-md border border-purple-100 overflow-hidden hover:shadow-xl transition">
+    <div className="bg-white border border-purple-100 rounded-2xl shadow-md overflow-hidden hover:shadow-xl transition duration-300 flex flex-col h-full">
+      
+      {/* idea image */}
       <img
         src={idea.image}
         alt={idea.title}
-        className="w-full h-48 object-cover"
+        className="w-full h-52 object-cover"
       />
 
-      <div className="p-5">
-        <p className="text-sm text-pink-500 font-semibold">
+      {/* card content */}
+      <div className="p-5 flex flex-col flex-1">
+        
+        {/* category */}
+        <p className="text-sm font-semibold text-pink-500">
           {idea.category}
         </p>
 
-        <h3 className="text-xl font-bold text-gray-900 mt-2">
+        {/* title */}
+        <h2 className="text-2xl font-bold text-gray-900 mt-2">
           {idea.title}
-        </h3>
+        </h2>
 
-        <p className="text-gray-600 mt-2">
+        {/* description */}
+        <p className="text-gray-600 mt-3 flex-1">
           {idea.shortDescription}
         </p>
 
-        <Link to={`/ideas/${idea.id}`}>
-          <button className="primary-btn mt-5 w-full">
+        {/* button */}
+        <Link
+          to={`/ideas/${idea.id}`}
+          className="mt-6"
+        >
+          <button className="primary-btn w-full">
             View Details
           </button>
         </Link>
+
       </div>
     </div>
   );
