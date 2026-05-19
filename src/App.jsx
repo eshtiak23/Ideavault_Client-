@@ -8,8 +8,7 @@ function App() {
     <div className="min-h-screen bg-white">
 
       <Navbar />
-
-      <main className="min-h-[calc(100vh-160px)]">
+<main className="min-h-[calc(100vh-160px)] bg-gradient-to-b from-white to-purple-50">
         <Outlet />
       </main>
 
