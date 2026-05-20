@@ -62,6 +62,21 @@ export default function AuthProvider({ children }) {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
 
       setUser(currentUser);
+      
+      if (currentUser?.email) {
+
+  fetch("http://localhost:5000/jwt", {
+    method: "POST",
+    headers: {
+      "content-type": "application/json",
+    },
+    credentials: "include",
+    body: JSON.stringify({
+      email: currentUser.email,
+    }),
+  });
+
+}
 
       setLoading(false);
     });

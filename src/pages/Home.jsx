@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-
+import useTitle from "../hooks/useTitle";
 import IdeaCard from "../components/IdeaCard";
 import Spinner from "../components/Spinner";
 import WhyIdeaVault from "../components/WhyIdeaVault";
@@ -28,6 +28,7 @@ const slides = [
 ];
 
 export default function Home() {
+  useTitle("Home");
 
   const [activeSlide, setActiveSlide] = useState(0);
 

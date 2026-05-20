@@ -1,7 +1,7 @@
 import { createBrowserRouter } from "react-router-dom";
 
 import App from "../App";
-
+import Profile from "../pages/Profile";
 import Home from "../pages/Home";
 import Ideas from "../pages/Ideas";
 import AddIdea from "../pages/AddIdea";
@@ -12,6 +12,7 @@ import MyInteractions from "../pages/MyInteractions";
 import Login from "../pages/Login";
 import Register from "../pages/Register";
 import NotFound from "../pages/NotFound";
+import EditIdea from "../pages/EditIdea";
 
 const router = createBrowserRouter([
   {
@@ -27,6 +28,14 @@ const router = createBrowserRouter([
         element: <Ideas />,
       },
     {
+        path: "/profile",
+        element: (
+          <PrivateRoute>
+            <Profile />
+          </PrivateRoute>
+        ),
+      },
+      {
   path: "/add-idea",
   element: (
     <PrivateRoute>
@@ -39,6 +48,10 @@ const router = createBrowserRouter([
         element: <IdeaDetails />,
       },
      {
+        path: "/edit-idea/:id",
+        element: <EditIdea />,
+      },
+      {
   path: "/my-ideas",
   element: (
     <PrivateRoute>

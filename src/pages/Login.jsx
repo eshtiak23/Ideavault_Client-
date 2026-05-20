@@ -3,8 +3,10 @@ import { Link, useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 
 import { AuthContext } from "../provider/AuthProvider";
+import useTitle from "../hooks/useTitle";
 
 export default function Login() {
+  useTitle("Login");
 
   const { loginUser, googleLogin } = useContext(AuthContext);
 

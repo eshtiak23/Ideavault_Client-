@@ -1,9 +1,11 @@
 import { useContext } from "react";
 import toast from "react-hot-toast";
-
+import useTitle from "../hooks/useTitle";
 import { AuthContext } from "../provider/AuthProvider";
 
 export default function AddIdea() {
+
+  useTitle("Add Idea");
 
   const { user } = useContext(AuthContext);
 
