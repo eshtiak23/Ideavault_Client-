@@ -3,6 +3,7 @@ import toast from "react-hot-toast";
 
 import { AuthContext } from "../provider/AuthProvider";
 import useTitle from "../hooks/useTitle";
+import { API_URL } from "../utils/api";
 
 export default function Profile() {
   useTitle("Profile");

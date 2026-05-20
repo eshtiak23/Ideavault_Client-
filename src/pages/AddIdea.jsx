@@ -2,6 +2,7 @@ import { useContext } from "react";
 import toast from "react-hot-toast";
 import useTitle from "../hooks/useTitle";
 import { AuthContext } from "../provider/AuthProvider";
+import { API_URL } from "../utils/api";
 
 export default function AddIdea() {
 
@@ -35,7 +36,7 @@ export default function AddIdea() {
 
       const response = await 
          
-      fetch(`${API_URL}/ideas`, 
+      fetch(`${import.meta.env.VITE_API_URL}/ideas`, 
 
       {
         method: "POST",

@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import useTitle from "../hooks/useTitle";
+import { API_URL } from "../utils/api";
 
 export default function NotFound() {
   useTitle("404");

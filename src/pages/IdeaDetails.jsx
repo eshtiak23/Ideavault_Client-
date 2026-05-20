@@ -4,6 +4,7 @@ import toast from "react-hot-toast";
 
 import Spinner from "../components/Spinner";
 import { AuthContext } from "../provider/AuthProvider";
+import { API_URL } from "../utils/api";
 import useTitle from "../hooks/useTitle";
 export default function IdeaDetails() {
   const { id } = useParams();

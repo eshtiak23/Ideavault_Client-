@@ -5,6 +5,7 @@ import IdeaCard from "../components/IdeaCard";
 import Spinner from "../components/Spinner";
 import WhyIdeaVault from "../components/WhyIdeaVault";
 import CategoriesPreview from "../components/CategoriesPreview";
+import { API_URL } from "../utils/api";
 
 const slides = [
   {

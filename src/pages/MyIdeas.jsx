@@ -7,6 +7,7 @@ import Swal from "sweetalert2";
 import { AuthContext } from "../provider/AuthProvider";
 import Spinner from "../components/Spinner";
 import useTitle from "../hooks/useTitle";
+import { API_URL } from "../utils/api";
 
 export default function MyIdeas() {
   const { user } = useContext(AuthContext);

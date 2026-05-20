@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import IdeaCard from "../components/IdeaCard";
 import Spinner from "../components/Spinner";
+import { API_URL } from "../utils/api";
 
 export default function Ideas() {
   const [ideas, setIdeas] = useState([]);
