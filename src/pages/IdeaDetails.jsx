@@ -47,7 +47,7 @@ export default function IdeaDetails() {
       userPhoto: user?.photoURL,
     };
 
-    const response = await fetch("${import.meta.env.VITE_API_URL}/comments", {
+    const response = await fetch(`${import.meta.env.VITE_API_URL}/comments`, {
       method: "POST",
       headers: {
         "content-type": "application/json",

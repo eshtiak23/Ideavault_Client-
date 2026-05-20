@@ -65,7 +65,7 @@ export default function AuthProvider({ children }) {
 
       if (currentUser?.email) {
 
-  fetch("${import.meta.env.VITE_API_URL}/jwt", {
+  fetch(`${import.meta.env.VITE_API_URL}/jwt`, {
     method: "POST",
     headers: {
       "content-type": "application/json",

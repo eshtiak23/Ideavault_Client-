@@ -52,7 +52,8 @@ export default function Home() {
 
   useEffect(() => {
 
-    fetch("${import.meta.env.VITE_API_URL}/trending-ideas")
+   fetch(`${import.meta.env.VITE_API_URL}/trending-ideas`)
+
       .then((res) => res.json())
       .then((data) => {
 
