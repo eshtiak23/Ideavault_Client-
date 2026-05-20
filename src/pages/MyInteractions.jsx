@@ -15,7 +15,7 @@ export default function MyInteractions() {
   const [selectedComment, setSelectedComment] = useState(null);
 
   const loadComments = () => {
-    fetch(`http://localhost:5000/my-interactions?email=${user.email}`)
+    fetch(`${import.meta.env.VITE_API_URL}/my-interactions?email=${user.email}`)
       .then((res) => res.json())
       .then((data) => {
         setComments(data);
@@ -38,7 +38,7 @@ export default function MyInteractions() {
       confirmButtonText: "Yes, delete it",
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(`http://localhost:5000/comments/${id}`, {
+        fetch(`${import.meta.env.VITE_API_URL}/comments/${id}`, {
           method: "DELETE",
         })
           .then((res) => res.json())
@@ -66,7 +66,7 @@ export default function MyInteractions() {
       commentText: form.commentText.value,
     };
 
-    fetch(`http://localhost:5000/comments/${selectedComment._id}`, {
+    fetch(`${import.meta.env.VITE_API_URL}/comments/${selectedComment._id}`, {
       method: "PUT",
       headers: {
         "content-type": "application/json",

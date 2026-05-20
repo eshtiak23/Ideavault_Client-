@@ -16,7 +16,7 @@ export default function EditIdea() {
 
   useEffect(() => {
 
-    fetch(`http://localhost:5000/ideas/${id}`)
+    fetch(`${import.meta.env.VITE_API_URL}/ideas/${id}`)
       .then((res) => res.json())
       .then((data) => setIdea(data));
 
@@ -39,7 +39,7 @@ export default function EditIdea() {
     };
 
     const response = await fetch(
-      `http://localhost:5000/ideas/${id}`,
+      `${import.meta.env.VITE_API_URL}/ideas/${id}`,
       {
         method: "PUT",
         headers: {

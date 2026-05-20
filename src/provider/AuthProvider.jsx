@@ -62,10 +62,10 @@ export default function AuthProvider({ children }) {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
 
       setUser(currentUser);
-      
+
       if (currentUser?.email) {
 
-  fetch("http://localhost:5000/jwt", {
+  fetch("${import.meta.env.VITE_API_URL}/jwt", {
     method: "POST",
     headers: {
       "content-type": "application/json",

@@ -33,7 +33,7 @@ export default function AddIdea() {
 
     try {
 
-      const response = await fetch("http://localhost:5000/ideas", {
+      const response = await fetch("${import.meta.env.VITE_API_URL}/ideas", {
         method: "POST",
         headers: {
           "content-type": "application/json",
