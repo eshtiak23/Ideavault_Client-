@@ -1,58 +1,26 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import IdeaCard from "../components/IdeaCard";
-
-const allIdeas = [
-  {
-    id: 1,
-    title: "AI Study Assistant",
-    category: "AI",
-    image: "https://images.unsplash.com/photo-1677442136019-21780ecad995",
-    shortDescription: "Helps students learn faster with AI support.",
-  },
-  {
-    id: 2,
-    title: "Smart Blood Donor Finder",
-    category: "Health",
-    image: "https://images.unsplash.com/photo-1615461066841-6116e61058f4",
-    shortDescription: "Finds nearby blood donors during emergencies.",
-  },
-  {
-    id: 3,
-    title: "Local Skill Marketplace",
-    category: "Tech",
-    image: "https://images.unsplash.com/photo-1556761175-4b46a572b786",
-    shortDescription: "Connects local skilled people with clients.",
-  },
-  {
-    id: 4,
-    title: "Green Farming AI",
-    category: "Agriculture",
-    image: "https://images.unsplash.com/photo-1501004318641-b39e6451bec6",
-    shortDescription: "Supports farmers with crop monitoring ideas.",
-  },
-  {
-    id: 5,
-    title: "Online Doctor Platform",
-    category: "Health",
-    image: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d",
-    shortDescription: "Makes online doctor consultation easier.",
-  },
-  {
-    id: 6,
-    title: "Digital Classroom Hub",
-    category: "Education",
-    image: "https://images.unsplash.com/photo-1522202176988-66273c2fd55f",
-    shortDescription: "Helps teachers and students share resources.",
-  },
-];
+import Spinner from "../components/Spinner";
 
 export default function Ideas() {
+  const [ideas, setIdeas] = useState([]);
+  const [loading, setLoading] = useState(true);
+
   const [searchText, setSearchText] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("");
 
-  const filteredIdeas = allIdeas.filter((idea) => {
+  useEffect(() => {
+    fetch("http://localhost:5000/ideas")
+      .then((res) => res.json())
+      .then((data) => {
+        setIdeas(data);
+        setLoading(false);
+      });
+  }, []);
+
+  const filteredIdeas = ideas.filter((idea) => {
     const titleMatched = idea.title
-      .toLowerCase()
+      ?.toLowerCase()
       .includes(searchText.toLowerCase());
 
     const categoryMatched = selectedCategory
@@ -61,6 +29,10 @@ export default function Ideas() {
 
     return titleMatched && categoryMatched;
   });
+
+  if (loading) {
+    return <Spinner />;
+  }
 
   return (
     <div className="container-box py-16">
@@ -72,7 +44,7 @@ export default function Ideas() {
         </h1>
 
         <p className="text-gray-600 mt-4">
-          Search and filter startup ideas easily.
+          Search and filter startup ideas from the database.
         </p>
       </div>
 
@@ -94,14 +66,15 @@ export default function Ideas() {
           <option value="AI">AI</option>
           <option value="Health">Health</option>
           <option value="Tech">Tech</option>
-          <option value="Agriculture">Agriculture</option>
           <option value="Education">Education</option>
+          <option value="Agriculture">Agriculture</option>
+          <option value="Business">Business</option>
         </select>
       </div>
 
       <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mt-12">
         {filteredIdeas.map((idea) => (
-          <IdeaCard key={idea.id} idea={idea} />
+          <IdeaCard key={idea._id} idea={idea} />
         ))}
 
         {filteredIdeas.length === 0 && (
