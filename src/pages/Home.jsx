@@ -53,9 +53,9 @@ export default function Home() {
 useEffect(() => {
 
 // test API connection****************************
-  console.log(import.meta.env.VITE_API_URL);
+  console.log(API_URL);
 
-  fetch(`${import.meta.env.VITE_API_URL}/trending-ideas`)
+  fetch(`${API_URL}/trending-ideas`)
     .then((res) => res.json())
     .then((data) => {
       console.log(data);
@@ -66,7 +66,7 @@ useEffect(() => {
   // Fetch trending ideas
   useEffect(() => {
 
-   fetch(`${import.meta.env.VITE_API_URL}/trending-ideas`)
+   fetch(`${API_URL}/trending-ideas`)
 
       .then((res) => res.json())
       .then((data) => {

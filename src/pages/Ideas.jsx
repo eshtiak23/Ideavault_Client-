@@ -10,7 +10,7 @@ export default function Ideas() {
   const [selectedCategory, setSelectedCategory] = useState("");
 
   useEffect(() => {
-  fetch(`${import.meta.env.VITE_API_URL}/ideas`)
+  fetch(`${API_URL}/ideas`)
       .then((res) => res.json())
       .then((data) => {
         setIdeas(data); 

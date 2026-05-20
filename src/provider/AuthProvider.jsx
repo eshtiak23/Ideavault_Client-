@@ -1,4 +1,5 @@
 import { createContext, useEffect, useState } from "react";
+import { API_URL } from "../utils/api";
 
 import {
   createUserWithEmailAndPassword,
@@ -65,7 +66,7 @@ export default function AuthProvider({ children }) {
 
       if (currentUser?.email) {
 
-  fetch(`${import.meta.env.VITE_API_URL}/jwt`, {
+  fetch(`${API_URL}/jwt`, {
     method: "POST",
     headers: {
       "content-type": "application/json",

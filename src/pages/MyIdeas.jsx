@@ -17,7 +17,7 @@ export default function MyIdeas() {
   const [selectedIdea, setSelectedIdea] = useState(null);
 
   const loadMyIdeas = () => {
-    fetch(`${import.meta.env.VITE_API_URL}/my-ideas?email=${user.email}`)
+    fetch(`${API_URL}/my-ideas?email=${user.email}`)
       .then((res) => res.json())
       .then((data) => {
         setIdeas(data);
@@ -40,7 +40,7 @@ export default function MyIdeas() {
       confirmButtonText: "Yes, delete it",
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(`${import.meta.env.VITE_API_URL}/ideas/${id}`, {
+        fetch(`${API_URL}/ideas/${id}`, {
           method: "DELETE",
         })
           .then((res) => res.json())
@@ -73,7 +73,7 @@ export default function MyIdeas() {
       proposedSolution: form.proposedSolution.value,
     };
 
-    fetch(`${import.meta.env.VITE_API_URL}/ideas/${selectedIdea._id}`, {
+    fetch(`${API_URL}/ideas/${selectedIdea._id}`, {
       method: "PUT",
       headers: {
         "content-type": "application/json",

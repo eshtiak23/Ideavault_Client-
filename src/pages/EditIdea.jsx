@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import toast from "react-hot-toast";
-
+import { API_URL } from "../utils/api";
 import useTitle from "../hooks/useTitle";
 
 export default function EditIdea() {
@@ -16,7 +16,7 @@ export default function EditIdea() {
 
   useEffect(() => {
 
-    fetch(`${import.meta.env.VITE_API_URL}/ideas/${id}`)
+    fetch(`${API_URL}/ideas/${id}`)
       .then((res) => res.json())
       .then((data) => setIdea(data));
 
@@ -39,7 +39,7 @@ export default function EditIdea() {
     };
 
     const response = await fetch(
-      `${import.meta.env.VITE_API_URL}/ideas/${id}`,
+      `${API_URL}/ideas/${id}`,
       {
         method: "PUT",
         headers: {

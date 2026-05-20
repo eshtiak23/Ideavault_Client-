@@ -15,7 +15,7 @@ export default function IdeaDetails() {
   const [loading, setLoading] = useState(true);
 
   const loadComments = () => {
-    fetch(`${import.meta.env.VITE_API_URL}/comments/${id}`)
+    fetch(`${API_URL}/comments/${id}`)
       .then((res) => res.json())
       .then((data) => {
         setComments(data);
@@ -23,7 +23,7 @@ export default function IdeaDetails() {
   };
 
   useEffect(() => {
-    fetch(`${import.meta.env.VITE_API_URL}/ideas/${id}`)
+    fetch(`${API_URL}/ideas/${id}`)
       .then((res) => res.json())
       .then((data) => {
         setIdea(data);
@@ -47,7 +47,7 @@ export default function IdeaDetails() {
       userPhoto: user?.photoURL,
     };
 
-    const response = await fetch(`${import.meta.env.VITE_API_URL}/comments`, {
+    const response = await fetch(`${API_URL}/comments`, {
       method: "POST",
       headers: {
         "content-type": "application/json",
