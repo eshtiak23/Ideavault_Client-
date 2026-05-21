@@ -6,7 +6,7 @@ A modern startup idea sharing platform where users can discover, share, and mana
 
 Client:https://ideavault-client-nine.vercel.app/
 
-Server:https://ideavault-server-git-main-eshtiak23s-projects.vercel.app/
+Server: https://ideavault-server-nine.vercel.app/
 
 
 ## Features
