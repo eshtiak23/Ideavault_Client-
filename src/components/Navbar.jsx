@@ -14,52 +14,63 @@ export default function Navbar() {
   const handleLogout = async () => {
     try {
       await logoutUser();
+      setOpen(false);
       toast.success("Logged out");
     } catch (error) {
       toast.error(error.message);
     }
   };
 
+  const navLinkClass = ({ isActive }) =>
+    `font-medium transition ${
+      isActive
+        ? "text-purple-700 dark:text-purple-300"
+        : "text-gray-700 hover:text-purple-700 dark:text-slate-300 dark:hover:text-purple-300"
+    }`;
+
   const links = (
     <>
-      <NavLink className="nav-link" to="/">
+      <NavLink onClick={() => setOpen(false)} className={navLinkClass} to="/">
         Home
       </NavLink>
 
-      <NavLink className="nav-link" to="/ideas">
+      <NavLink onClick={() => setOpen(false)} className={navLinkClass} to="/ideas">
         Ideas
       </NavLink>
 
-      <NavLink className="nav-link" to="/add-idea">
-        Add Idea
-      </NavLink>
+      {user && (
+        <>
+          <NavLink onClick={() => setOpen(false)} className={navLinkClass} to="/add-idea">
+            Add Idea
+          </NavLink>
 
-      <NavLink className="nav-link" to="/my-ideas">
-        My Ideas
-      </NavLink>
+          <NavLink onClick={() => setOpen(false)} className={navLinkClass} to="/my-ideas">
+            My Ideas
+          </NavLink>
 
-      <NavLink className="nav-link" to="/my-interactions">
-        My Interactions
-      </NavLink>
+          <NavLink onClick={() => setOpen(false)} className={navLinkClass} to="/my-interactions">
+            My Interactions
+          </NavLink>
+        </>
+      )}
     </>
   );
 
   return (
-    <nav className="sticky top-0 z-50 bg-white/90 backdrop-blur-md border-b border-purple-100">
+    <nav className="sticky top-0 z-50 border-b border-purple-100 bg-white dark:border-slate-800 dark:bg-slate-950">
       <div className="container-box flex items-center justify-between py-4">
         <Link to="/" className="text-3xl font-bold">
           <span className="text-sky-500">Idea</span>
-          <span className="text-purple-600">Vault</span>
+          <span className="text-purple-600 dark:text-purple-400">Vault</span>
         </Link>
 
-       
-        <div className="hidden lg:flex items-center gap-6">
-          {links}
-        </div>
+        <div className="hidden items-center gap-6 lg:flex">{links}</div>
 
-        
-        <div className="hidden md:flex items-center gap-3">
-          <button onClick={toggleTheme} className="theme-btn">
+        <div className="hidden items-center gap-3 md:flex">
+          <button
+            onClick={toggleTheme}
+            className="flex h-9 w-9 items-center justify-center rounded-lg border border-purple-200 bg-white text-base shadow-sm transition hover:bg-purple-50 dark:border-slate-700 dark:bg-slate-800 dark:hover:bg-slate-700"
+          >
             {darkMode ? "☀️" : "🌙"}
           </button>
 
@@ -67,20 +78,14 @@ export default function Navbar() {
             <div className="flex items-center gap-4">
               <Link to="/profile">
                 <img
-                  src={
-                    user.photoURL ||
-                    "https://i.ibb.co/4pDNDk1/avatar.png"
-                  }
+                  src={user.photoURL || "https://i.ibb.co/4pDNDk1/avatar.png"}
                   alt="user"
                   title={user.displayName || "Profile"}
-                  className="w-11 h-11 rounded-full border-2 border-purple-400 object-cover cursor-pointer hover:scale-105 transition"
+                  className="h-10 w-10 rounded-full border-2 border-purple-400 object-cover transition hover:scale-105"
                 />
               </Link>
 
-              <button
-                onClick={handleLogout}
-                className="primary-btn"
-              >
+              <button onClick={handleLogout} className="primary-btn">
                 Logout
               </button>
             </div>
@@ -88,7 +93,7 @@ export default function Navbar() {
             <>
               <Link
                 to="/login"
-                className="px-5 py-2 rounded-lg border border-purple-300 text-purple-600 font-medium"
+                className="rounded-lg border border-purple-300 px-5 py-2 font-medium text-purple-600 transition hover:bg-purple-50 dark:border-slate-700 dark:text-purple-300 dark:hover:bg-slate-800"
               >
                 Login
               </Link>
@@ -100,39 +105,35 @@ export default function Navbar() {
           )}
         </div>
 
-        
-
-        <div className="flex md:hidden items-center gap-3">
-          <button onClick={toggleTheme} className="theme-btn">
+        <div className="flex items-center gap-2 md:hidden">
+          <button
+            onClick={toggleTheme}
+            className="flex h-9 w-9 items-center justify-center rounded-lg border border-purple-200 bg-white text-base shadow-sm transition hover:bg-purple-50 dark:border-slate-700 dark:bg-slate-800 dark:hover:bg-slate-700"
+          >
             {darkMode ? "☀️" : "🌙"}
           </button>
 
           {user && (
             <Link to="/profile">
               <img
-                src={
-                  user.photoURL ||
-                  "https://i.ibb.co/4pDNDk1/avatar.png"
-                }
+                src={user.photoURL || "https://i.ibb.co/4pDNDk1/avatar.png"}
                 alt="user"
-                className="w-10 h-10 rounded-full border-2 border-purple-400 object-cover"
+                className="h-9 w-9 rounded-full border-2 border-purple-400 object-cover"
               />
             </Link>
           )}
 
           <button
             onClick={() => setOpen(!open)}
-            className="text-3xl text-purple-600 leading-none"
+            className="flex h-9 w-9 items-center justify-center rounded-lg text-2xl text-purple-600 transition hover:bg-purple-100 dark:text-purple-400 dark:hover:bg-slate-800"
           >
-            {open ? "✕" : "☰"}
+            {open ? "×" : "☰"}
           </button>
         </div>
       </div>
 
-      {/* Mobile Menu Section */}
-
       {open && (
-        <div className="lg:hidden bg-white border-t border-purple-100 px-6 py-5">
+        <div className="border-t border-purple-100 bg-white px-6 py-5 dark:border-slate-800 dark:bg-slate-950 lg:hidden">
           <div className="flex flex-col gap-4">
             {links}
 
@@ -140,16 +141,13 @@ export default function Navbar() {
               <>
                 <Link
                   to="/profile"
-                  className="text-purple-600 font-medium"
+                  className="font-medium text-purple-600 dark:text-purple-300"
                   onClick={() => setOpen(false)}
                 >
                   Profile
                 </Link>
 
-                <button
-                  onClick={handleLogout}
-                  className="primary-btn text-center"
-                >
+                <button onClick={handleLogout} className="primary-btn text-center">
                   Logout
                 </button>
               </>
@@ -157,7 +155,8 @@ export default function Navbar() {
               <>
                 <Link
                   to="/login"
-                  className="text-purple-600 font-medium"
+                  className="font-medium text-purple-600 dark:text-purple-300"
+                  onClick={() => setOpen(false)}
                 >
                   Login
                 </Link>
@@ -165,6 +164,7 @@ export default function Navbar() {
                 <Link
                   to="/register"
                   className="primary-btn text-center"
+                  onClick={() => setOpen(false)}
                 >
                   Register
                 </Link>

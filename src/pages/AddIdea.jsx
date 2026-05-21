@@ -56,7 +56,7 @@ export default function AddIdea() {
       <div className="text-center">
         <p className="text-pink-500 font-semibold">Create New Startup Idea</p>
 
-        <h1 className="text-4xl font-bold text-gray-950 mt-3">
+        <h1 className="text-4xl font-bold text-blue-600 mt-3">
           Add Your Innovative Idea
         </h1>
 
