@@ -11,19 +11,19 @@ Server:https://ideavault-server-git-main-eshtiak23s-projects.vercel.app/
 
 ## Features
 
-🔐 Firebase Authentication
-🌙 Dark & Light Theme Toggle
-📱 Fully Responsive Design
-💡 Add Startup Ideas
-📝 Edit & Delete Ideas
-📊 Trending Ideas Section
-👤 User-Specific Dashboard
-❤️ My Interactions Page
-🔒 Private Routes with JWT Authentication
-☁️ MongoDB Database Integration
-🚀 Modern UI with Tailwind CSS
-🔥 Toast Notifications
-🎨 Premium Gradient Design
+- Firebase Authentication
+- Dark & Light Theme Toggle
+- Fully Responsive Design
+- Add Startup Ideas
+- Edit & Delete Ideas
+- Trending Ideas Section
+- User-Specific Dashboard
+- My Interactions Page
+- Private Routes with JWT Authentication
+- MongoDB Database Integration
+- Modern UI with Tailwind CSS
+- Toast Notifications
+- Premium Gradient Design
 
 ## Technologies Used
 Frontend
