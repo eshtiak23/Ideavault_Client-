@@ -25,52 +25,59 @@ Server:https://ideavault-server-git-main-eshtiak23s-projects.vercel.app/
 - Toast Notifications
 - Premium Gradient Design
 
-## Technologies Used
-Frontend
-React
-React Router DOM
-Tailwind CSS
-Firebase
-React Hot Toast
-SweetAlert2
-Backend
-Node.js
-Express.js
-MongoDB
-JWT
-Cookie Parser
-CORS
-Dotenv
+#  Technologies Used
 
+##  Frontend
 
-## Authentication System
+- React
+- React Router DOM
+- Tailwind CSS
+- Firebase
+- React Hot Toast
+- SweetAlert2
 
-1.Firebase handles user login/register
-2.JWT token generated from backend
-3.Protected routes secured using token validation
-4.Cookies used for authentication persistence
+##  Backend
+
+- Node.js
+- Express.js
+- MongoDB
+- JWT (jsonwebtoken)
+- Cookie Parser
+- CORS
+- Dotenv
+
+---
+
+# 🔐 Authentication System
+
+1. Firebase handles user login and registration.
+2. JWT token is generated from the backend.
+3. Protected routes are secured using token validation.
+4. Cookies are used for authentication persistence.
 
 ## Core Pages
-Home
-Ideas
-Idea Details
-Add Idea
-Edit Idea
-My Ideas
-My Interactions
-Login
-Register
-Profile
+- Home
+- Ideas
+- Idea Details
+- Add Idea
+- Edit Idea
+- My Ideas
+- My Interactions
+- Login
+- Register
+- Profile
 
 📸 Screenshot
-
+![alt text](image-2.png)
+![alt text](image.png)
+![alt text](image-1.png)
 
 👨‍💻 Developer
 
-MD Eshtiak Ahmed
-React & MERN Stack Developer
-Passionate about UI/UX & Cyber Security
+- MD Eshtiak Ahmed
+- React & MERN Stack Developer
+- Passionate about UI/UX & Cyber Security
 
-📜 License
+## License
 
 This project is created for educational and learning purposes.
