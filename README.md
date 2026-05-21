@@ -74,9 +74,11 @@ Server:https://ideavault-server-git-main-eshtiak23s-projects.vercel.app/
 
 👨‍💻 Developer
 
-- MD Eshtiak Ahmed
-React & MERN Stack Developer,
-Passionate about UI/UX & Cyber Security.
+MD Eshtiak Ahmed
+- React Developer
+- MERN Stack Enthusiast
+- Passionate about UI/UX & Cyber Security
+
 
 ## License
 
