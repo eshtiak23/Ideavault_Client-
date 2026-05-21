@@ -45,10 +45,10 @@ export default function MyInteractions() {
           .then((res) => res.json())
           .then((data) => {
             if (data.deletedCount > 0) {
-              toast.success("Comment deleted successfully");
+              toast.success("Deleted Successfully");
 
               const remainingComments = comments.filter(
-                (comment) => comment._id !== id
+                (comment) => comment._id !== id,
               );
 
               setComments(remainingComments);
@@ -77,7 +77,7 @@ export default function MyInteractions() {
       .then((res) => res.json())
       .then((data) => {
         if (data.modifiedCount > 0) {
-          toast.success("Comment updated successfully");
+          toast.success("Updated Successfully");
           setSelectedComment(null);
           loadComments();
         }
@@ -91,7 +91,7 @@ export default function MyInteractions() {
   return (
     <div className="container-box py-16">
       <div className="text-center">
-        <p className="text-pink-500 font-semibold">My Interactions</p>
+        <p className="text-xl text-pink-500 font-semibold">My Interactions</p>
 
         <h1 className="text-4xl font-bold text-gray-900 mt-3">
           Comments You Added
@@ -110,7 +110,9 @@ export default function MyInteractions() {
           >
             <div className="flex items-center gap-4">
               <img
-                src={comment.userPhoto || "https://i.ibb.co.com/4pDNDk1/avatar.png"}
+                src={
+                  comment.userPhoto || "https://i.ibb.co/4pDNDk1/avatar.png"
+                }
                 alt="user"
                 className="w-12 h-12 rounded-full"
               />
@@ -132,9 +134,7 @@ export default function MyInteractions() {
               </div>
             </div>
 
-            <p className="text-gray-700 mt-5">
-              {comment.commentText}
-            </p>
+            <p className="text-gray-700 mt-5">{comment.commentText}</p>
 
             <div className="flex gap-3 mt-5">
               <button
@@ -155,18 +155,14 @@ export default function MyInteractions() {
         ))}
 
         {comments.length === 0 && (
-          <p className="text-center text-gray-500">
-            No interactions found.
-          </p>
+          <p className="text-center text-gray-500">No interactions found.</p>
         )}
       </div>
 
       {selectedComment && (
         <div className="fixed inset-0 bg-black/40 flex items-center justify-center z-50 px-4">
           <div className="bg-white rounded-3xl shadow-xl p-6 max-w-xl w-full">
-            <h2 className="text-3xl font-bold text-purple-600">
-              Edit Comment
-            </h2>
+            <h2 className="text-3xl font-bold text-purple-600">Edit Comment</h2>
 
             <form onSubmit={handleUpdate} className="mt-6">
               <textarea
@@ -178,9 +174,7 @@ export default function MyInteractions() {
               ></textarea>
 
               <div className="flex gap-4 mt-5">
-                <button className="primary-btn flex-1">
-                  Save Changes
-                </button>
+                <button className="primary-btn flex-1">Save Changes</button>
 
                 <button
                   type="button"

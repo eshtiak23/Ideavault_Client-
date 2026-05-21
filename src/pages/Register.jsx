@@ -1,5 +1,5 @@
-import { useContext } from "react";
-import { Link } from "react-router-dom";
+import { useContext, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 
 import useTitle from "../hooks/useTitle";
@@ -8,81 +8,63 @@ import { AuthContext } from "../provider/AuthProvider";
 export default function Register() {
   useTitle("Register");
 
+  const navigate = useNavigate();
   const { createUser, updateUserProfile } = useContext(AuthContext);
 
-  const handleRegister = async (e) => {
+  const [showPassword, setShowPassword] = useState(false);
 
+  const handleRegister = async (e) => {
     e.preventDefault();
 
     const form = e.target;
 
-    const name = form.name.value;
-    const email = form.email.value;
-    const photo = form.photo.value;
+    const name = form.name.value.trim();
+    const email = form.email.value.trim();
+    const photo = form.photo.value.trim();
     const password = form.password.value;
-
-    // password validation
-    const hasUppercase = /[A-Z]/.test(password);
-    const hasLowercase = /[a-z]/.test(password);
 
     if (password.length < 6) {
       toast.error("Password must be at least 6 characters");
       return;
     }
 
-    if (!hasUppercase) {
-      toast.error("Password must include uppercase letter");
+    if (!/[A-Z]/.test(password)) {
+      toast.error("Password must include an uppercase letter");
       return;
     }
 
-    if (!hasLowercase) {
-      toast.error("Password must include lowercase letter");
+    if (!/[a-z]/.test(password)) {
+      toast.error("Password must include a lowercase letter");
       return;
     }
 
     try {
-
-      // create firebase user
       await createUser(email, password);
-
-      // update user profile
       await updateUserProfile(name, photo);
 
-      toast.success("Registration Successful");
+      toast.success("Account created successfully");
 
       form.reset();
-
+      navigate("/");
     } catch (error) {
-
-      toast.error(error.message);
-
+      toast.error(error.message || "Something went wrong");
     }
   };
 
   return (
     <div className="container-box py-16">
-
       <div className="max-w-md mx-auto bg-white border border-purple-100 shadow-xl rounded-3xl p-8">
-
         <h1 className="text-4xl font-bold text-center text-purple-600">
           Register
         </h1>
 
         <p className="text-gray-500 text-center mt-3">
-          Create your IdeaVault account
+          Create your account
         </p>
 
-        <form
-          onSubmit={handleRegister}
-          className="mt-8 space-y-5"
-        >
-
-          {/* name */}
+        <form onSubmit={handleRegister} className="mt-8 space-y-5">
           <div>
-            <label className="font-semibold text-gray-700">
-              Full Name
-            </label>
-
+            <label className="font-semibold text-blue-700">Full Name</label>
             <input
               type="text"
               name="name"
@@ -92,12 +74,8 @@ export default function Register() {
             />
           </div>
 
-          {/* email */}
           <div>
-            <label className="font-semibold text-gray-700">
-              Email Address
-            </label>
-
+            <label className="font-semibold text-blue-700">Email Address</label>
             <input
               type="email"
               name="email"
@@ -107,14 +85,10 @@ export default function Register() {
             />
           </div>
 
-          {/* photo */}
           <div>
-            <label className="font-semibold text-gray-700">
-              Photo URL
-            </label>
-
+            <label className="font-semibold text-blue-700">Photo URL</label>
             <input
-              type="text"
+              type="url"
               name="photo"
               placeholder="Enter photo URL"
               className="w-full border border-purple-200 rounded-xl px-4 py-3 mt-2 outline-none focus:border-purple-500"
@@ -122,41 +96,40 @@ export default function Register() {
             />
           </div>
 
-          {/* password */}
           <div>
-            <label className="font-semibold text-gray-700">
-              Password
-            </label>
+            <label className="font-semibold text-blue-700">Password</label>
 
-            <input
-              type="password"
-              name="password"
-              placeholder="Enter password"
-              className="w-full border border-purple-200 rounded-xl px-4 py-3 mt-2 outline-none focus:border-purple-500"
-              required
-            />
+            <div className="relative mt-2">
+              <input
+                type={showPassword ? "text" : "password"}
+                name="password"
+                placeholder="Enter password"
+                className="w-full border border-purple-200 rounded-xl px-4 py-3 pr-20 outline-none focus:border-purple-500"
+                required
+              />
+
+              <button
+                type="button"
+                onClick={() => setShowPassword(!showPassword)}
+                className="absolute right-4 top-1/2 -translate-y-1/2 text-sm font-semibold text-purple-600"
+              >
+                {showPassword ? "Hide" : "Show"}
+              </button>
+            </div>
           </div>
 
-          <button className="primary-btn w-full">
+          <button type="submit" className="primary-btn w-full">
             Register
           </button>
-
         </form>
 
         <p className="text-center text-gray-600 mt-6">
           Already have an account?{" "}
-
-          <Link
-            to="/login"
-            className="text-purple-600 font-semibold"
-          >
+          <Link to="/login" className="text-purple-600 font-semibold">
             Login
           </Link>
-
         </p>
-
       </div>
-
     </div>
   );
 }

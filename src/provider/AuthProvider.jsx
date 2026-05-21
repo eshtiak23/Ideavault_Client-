@@ -18,33 +18,33 @@ export const AuthContext = createContext(null);
 const googleProvider = new GoogleAuthProvider();
 
 export default function AuthProvider({ children }) {
-
   const [user, setUser] = useState(null);
 
   const [loading, setLoading] = useState(true);
 
-  // register
+  // register user
+
   const createUser = (email, password) => {
     setLoading(true);
 
     return createUserWithEmailAndPassword(auth, email, password);
   };
 
-  // login
+  // login user
   const loginUser = (email, password) => {
     setLoading(true);
 
     return signInWithEmailAndPassword(auth, email, password);
   };
 
-  // google login
+
   const googleLogin = () => {
     setLoading(true);
 
     return signInWithPopup(auth, googleProvider);
   };
 
-  // update profile
+
   const updateUserProfile = (name, photo) => {
     return updateProfile(auth.currentUser, {
       displayName: name,
@@ -52,31 +52,25 @@ export default function AuthProvider({ children }) {
     });
   };
 
-  // logout
+
   const logoutUser = () => {
     return signOut(auth);
   };
 
-  // observer
+
   useEffect(() => {
-
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
-
       setUser(currentUser);
 
       if (currentUser?.email) {
-
   fetch(`${API_URL}/jwt`, {
     method: "POST",
     headers: {
       "content-type": "application/json",
     },
     credentials: "include",
-    body: JSON.stringify({
-      email: currentUser.email,
-    }),
+    body: JSON.stringify({ email: currentUser.email }),
   });
-
 }
 
       setLoading(false);
@@ -85,7 +79,6 @@ export default function AuthProvider({ children }) {
     return () => {
       unsubscribe();
     };
-
   }, []);
 
   const authInfo = {
@@ -99,8 +92,6 @@ export default function AuthProvider({ children }) {
   };
 
   return (
-    <AuthContext.Provider value={authInfo}>
-      {children}
-    </AuthContext.Provider>
+    <AuthContext.Provider value={authInfo}>{children}</AuthContext.Provider>
   );
 }

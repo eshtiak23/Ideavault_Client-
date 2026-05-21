@@ -5,13 +5,11 @@ import { AuthContext } from "../provider/AuthProvider";
 import { API_URL } from "../utils/api";
 
 export default function AddIdea() {
-
   useTitle("Add Idea");
 
   const { user } = useContext(AuthContext);
 
   const handleAddIdea = async (e) => {
-
     e.preventDefault();
 
     const form = e.target;
@@ -33,45 +31,36 @@ export default function AddIdea() {
     };
 
     try {
-
       const response = await fetch(`${API_URL}/ideas`, {
-  method: "POST",
-  headers: {
-    "content-type": "application/json",
-  },
-  body: JSON.stringify(ideaData),
-});
+        method: "POST",
+        headers: {
+          "content-type": "application/json",
+        },
+        body: JSON.stringify(ideaData),
+      });
 
       const data = await response.json();
 
       if (data.insertedId) {
-
-        toast.success("Idea Added Successfully");
+        toast.success("Your idea has been added successfully");
 
         form.reset();
-
       }
-
     } catch (error) {
-
-      toast.error("Failed to add idea");
-
+      toast.error("Failed to add your idea");
     }
   };
 
   return (
     <div className="container-box py-16">
-
       <div className="text-center">
-        <p className="text-pink-500 font-semibold">
-          Create Startup Idea
-        </p>
+        <p className="text-pink-500 font-semibold">Create New Startup Idea</p>
 
-        <h1 className="text-4xl font-bold text-gray-900 mt-3">
+        <h1 className="text-4xl font-bold text-gray-950 mt-3">
           Add Your Innovative Idea
         </h1>
 
-        <p className="text-gray-600 mt-4">
+        <p className="text-red-500 mt-4">
           Share your startup concept with the community.
         </p>
       </div>
@@ -80,13 +69,9 @@ export default function AddIdea() {
         onSubmit={handleAddIdea}
         className="bg-white shadow-xl border border-purple-100 rounded-3xl p-8 mt-12"
       >
-
         <div className="grid md:grid-cols-2 gap-6">
-
           <div>
-            <label className="font-semibold text-gray-700">
-              Idea Title
-            </label>
+            <label className="font-semibold text-gray-700">Title</label>
 
             <input
               type="text"
@@ -98,40 +83,36 @@ export default function AddIdea() {
           </div>
 
           <div>
-            <label className="font-semibold text-gray-700">
-              Category
-            </label>
+            <label className="font-semibold text-gray-700">Category</label>
 
             <select
               name="category"
               className="w-full border border-purple-200 rounded-xl px-4 py-3 mt-2 outline-none focus:border-purple-500"
               required
             >
-              <option value="">Select Category</option>
+              <option value="">Select a Category</option>
               <option value="AI">AI</option>
               <option value="Health">Health</option>
-              <option value="Tech">Tech</option>
+              <option value="Tech">Technology</option>
               <option value="Education">Education</option>
             </select>
           </div>
 
           <div>
-            <label className="font-semibold text-gray-700">
-              Image URL
-            </label>
+            <label className="font-semibold text-gray-700">Image URL</label>
 
             <input
               type="text"
               name="image"
-              placeholder="Enter image URL"
-              className="w-full border border-purple-200 rounded-xl px-4 py-3 mt-2 outline-none focus:border-purple-500"
+              placeholder="Enter your image URL"
+              className="w-full border border-purple-200 rounded-xl px-4 py-2 mt-2 outline-none focus:border-purple-500"
               required
             />
           </div>
 
           <div>
             <label className="font-semibold text-gray-700">
-              Estimated Budget
+               Budget
             </label>
 
             <input
@@ -141,7 +122,6 @@ export default function AddIdea() {
               className="w-full border border-purple-200 rounded-xl px-4 py-3 mt-2 outline-none focus:border-purple-500"
             />
           </div>
-
         </div>
 
         <div className="mt-6">
@@ -152,7 +132,7 @@ export default function AddIdea() {
           <textarea
             rows="3"
             name="shortDescription"
-            placeholder="Write short description"
+            placeholder="Write short description about your idea"
             className="w-full border border-purple-200 rounded-xl px-4 py-3 mt-2 outline-none focus:border-purple-500"
             required
           ></textarea>
@@ -166,21 +146,19 @@ export default function AddIdea() {
           <textarea
             rows="5"
             name="detailedDescription"
-            placeholder="Write detailed description"
+            placeholder="Write detailed description about your idea"
             className="w-full border border-purple-200 rounded-xl px-4 py-3 mt-2 outline-none focus:border-purple-500"
             required
           ></textarea>
         </div>
 
         <div className="mt-6">
-          <label className="font-semibold text-gray-700">
-            Target Audience
-          </label>
+          <label className="font-semibold text-gray-700">Target Audience</label>
 
           <input
             type="text"
             name="targetAudience"
-            placeholder="Students, Doctors, Farmers..."
+            placeholder="Students, Doctors, Children, Farmers..."
             className="w-full border border-purple-200 rounded-xl px-4 py-3 mt-2 outline-none focus:border-purple-500"
             required
           />
@@ -214,12 +192,8 @@ export default function AddIdea() {
           ></textarea>
         </div>
 
-        <button className="primary-btn mt-8 w-full">
-          Submit Idea
-        </button>
-
+        <button className="primary-btn mt-8 w-full">Submit Your  Idea</button>
       </form>
-
     </div>
   );
 }

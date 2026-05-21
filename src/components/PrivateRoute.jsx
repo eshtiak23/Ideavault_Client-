@@ -5,24 +5,24 @@ import { AuthContext } from "../provider/AuthProvider";
 import Spinner from "./Spinner";
 
 export default function PrivateRoute({ children }) {
-
   const { user, loading } = useContext(AuthContext);
 
   const location = useLocation();
 
-  // loading spinner
-  if (loading) {
-    return <Spinner />;
-  }
+  // loading spinner Sec
 
-  // if not logged in
+ if (loading) return <Spinner />;
+
+if (!user) {
+  return <Navigate to="/login" state={location.pathname} replace />;
+}
+
+return children;
+
+  // not logged in
+
   if (!user) {
-    return (
-      <Navigate
-        to="/login"
-        state={location.pathname}
-      />
-    );
+    return <Navigate to="/login" state={location.pathname} />;
   }
 
   return children;

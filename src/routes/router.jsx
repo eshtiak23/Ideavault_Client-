@@ -1,23 +1,24 @@
 import { createBrowserRouter } from "react-router-dom";
-
 import App from "../App";
-import Profile from "../pages/Profile";
 import Home from "../pages/Home";
 import Ideas from "../pages/Ideas";
-import AddIdea from "../pages/AddIdea";
-import PrivateRoute from "../components/PrivateRoute";
 import IdeaDetails from "../pages/IdeaDetails";
+import AddIdea from "../pages/AddIdea";
+import EditIdea from "../pages/EditIdea";
 import MyIdeas from "../pages/MyIdeas";
 import MyInteractions from "../pages/MyInteractions";
+import Profile from "../pages/Profile";
 import Login from "../pages/Login";
 import Register from "../pages/Register";
 import NotFound from "../pages/NotFound";
-import EditIdea from "../pages/EditIdea";
+
+import PrivateRoute from "../components/PrivateRoute";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <App />,
+
     children: [
       {
         path: "/",
@@ -27,38 +28,37 @@ const router = createBrowserRouter([
         path: "/ideas",
         element: <Ideas />,
       },
-    {
-        path: "/profile",
-        element: (
-          <PrivateRoute>
-            <Profile />
-          </PrivateRoute>
-        ),
-      },
-      {
-  path: "/add-idea",
-  element: (
-    <PrivateRoute>
-      <AddIdea />
-    </PrivateRoute>
-  ),
-},
+
       {
         path: "/ideas/:id",
         element: <IdeaDetails />,
       },
-     {
-        path: "/edit-idea/:id",
-        element: <EditIdea />,
+
+      {
+        path: "/add-idea",
+        element: (
+          <PrivateRoute>
+            <AddIdea />
+          </PrivateRoute>
+        ),
       },
       {
-  path: "/my-ideas",
-  element: (
-    <PrivateRoute>
-      <MyIdeas />
-    </PrivateRoute>
-  ),
-},
+        path: "/edit-idea/:id",
+        element: ( <PrivateRoute>
+            <EditIdea />
+          </PrivateRoute>
+        ),
+      },
+
+      {
+        path: "/my-ideas",
+        element: (
+          <PrivateRoute>
+            <MyIdeas />
+          </PrivateRoute>
+        ),
+      },
+
       {
         path: "/my-interactions",
         element: (
@@ -67,16 +67,28 @@ const router = createBrowserRouter([
           </PrivateRoute>
         ),
       },
+
+      {
+        path: "/profile",
+        element: (
+          <PrivateRoute>
+            <Profile />
+          </PrivateRoute>
+        ),
+      },
+
       {
         path: "/login",
         element: <Login />,
       },
+
       {
         path: "/register",
         element: <Register />,
       },
     ],
   },
+
   {
     path: "*",
     element: <NotFound />,

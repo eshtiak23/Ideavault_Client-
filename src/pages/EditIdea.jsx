@@ -5,7 +5,6 @@ import { API_URL } from "../utils/api";
 import useTitle from "../hooks/useTitle";
 
 export default function EditIdea() {
-
   useTitle("Edit Idea");
 
   const { id } = useParams();
@@ -15,66 +14,49 @@ export default function EditIdea() {
   const [idea, setIdea] = useState({});
 
   useEffect(() => {
-
     fetch(`${API_URL}/ideas/${id}`)
       .then((res) => res.json())
       .then((data) => setIdea(data));
-
   }, [id]);
 
   const handleUpdateIdea = async (e) => {
-
     e.preventDefault();
 
     const form = e.target;
 
     const updatedIdea = {
-
       title: form.title.value,
       category: form.category.value,
       image: form.image.value,
       shortDescription: form.shortDescription.value,
       description: form.description.value,
-
     };
 
-    const response = await fetch(
-      `${API_URL}/ideas/${id}`,
-      {
-        method: "PUT",
-        headers: {
-          "content-type": "application/json",
-        },
-        body: JSON.stringify(updatedIdea),
-      }
-    );
+    const response = await fetch(`${API_URL}/ideas/${id}`, {
+      method: "PUT",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(updatedIdea),
+    });
 
     const data = await response.json();
 
     if (data.modifiedCount > 0) {
-
-      toast.success("Idea Updated Successfully");
+      toast.success("Your idea updated successfully");
 
       navigate("/my-ideas");
-
     }
-
   };
 
   return (
     <div className="container-box py-16">
-
       <div className="max-w-3xl mx-auto bg-white border border-purple-100 shadow-xl rounded-3xl p-8">
-
-        <h1 className="text-4xl font-bold text-center text-purple-600">
-          Edit Idea
+        <h1 className="text-4xl font-bold text-center text-red-600">
+          Edit Your Submited Idea
         </h1>
 
-        <form
-          onSubmit={handleUpdateIdea}
-          className="mt-8 space-y-5"
-        >
-
+        <form onSubmit={handleUpdateIdea} className="mt-8 space-y-5">
           <input
             type="text"
             name="title"
@@ -105,11 +87,13 @@ export default function EditIdea() {
           <textarea
             name="shortDescription"
             defaultValue={idea.shortDescription}
-            placeholder="Short description"
+            placeholder="Short Description"
             rows="3"
             className="w-full border border-purple-200 rounded-xl px-4 py-3"
             required
           ></textarea>
+
+   
 
           <textarea
             name="description"
@@ -120,14 +104,9 @@ export default function EditIdea() {
             required
           ></textarea>
 
-          <button className="primary-btn w-full">
-            Update Idea
-          </button>
-
+          <button className="primary-btn w-full">Save Changes</button>
         </form>
-
       </div>
-
     </div>
   );
 }

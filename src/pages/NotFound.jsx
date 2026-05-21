@@ -15,7 +15,7 @@ export default function NotFound() {
         </h2>
 
         <p className="text-gray-600 mt-4">
-          The page you are looking for does not exist.
+          This page is not available. Please check the URL or go back to the homepage.
         </p>
 
         <Link to="/">

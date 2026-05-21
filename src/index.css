@@ -38,10 +38,7 @@ body {
   font-weight: 700;
 }
 
-.dark body {
-  background: #0f172a;
-  color: white;
-}
+
 
 .theme-btn {
   background: #f3e8ff;
@@ -138,7 +135,6 @@ body {
 .dark textarea::placeholder {
   color: #94a3b8;
 }
-
 
 .dark section.bg-gradient-to-r {
   background: linear-gradient(to right, #0f172a, #1e1b4b, #3b0764) !important;

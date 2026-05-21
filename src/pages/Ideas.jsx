@@ -11,10 +11,13 @@ export default function Ideas() {
   const [selectedCategory, setSelectedCategory] = useState("");
 
   useEffect(() => {
-  fetch(`${API_URL}/ideas`)
-      .then((res) => res.json())
+    fetch(`${API_URL}/ideas`)
+      .then((res) => {
+  if (!res.ok) throw new Error("Failed to load ideas data");
+  return res.json();
+})
       .then((data) => {
-        setIdeas(data); 
+        setIdeas(data);
         setLoading(false);
       });
   }, []);
@@ -41,7 +44,7 @@ export default function Ideas() {
         <p className="text-pink-500 font-semibold">Explore Ideas</p>
 
         <h1 className="text-4xl font-bold text-gray-900 mt-3">
-          Discover Startup Ideas
+          Explore Creative Startup Ideas
         </h1>
 
         <p className="text-gray-600 mt-4">
@@ -49,10 +52,10 @@ export default function Ideas() {
         </p>
       </div>
 
-      <div className="grid md:grid-cols-2 gap-4 mt-10">
+      <div className="grid md:grid-cols-2 gap-3 mt-9">
         <input
           type="text"
-          placeholder="Search by idea title..."
+          placeholder="Search by idea title or description..."
           className="border border-purple-200 rounded-xl px-4 py-3 outline-none focus:border-purple-500"
           value={searchText}
           onChange={(e) => setSearchText(e.target.value)}
@@ -79,7 +82,7 @@ export default function Ideas() {
         ))}
 
         {filteredIdeas.length === 0 && (
-          <p className="text-center text-gray-500 col-span-full">
+          <p className="text-center text-gray-600 col-span-full">
             No ideas found.
           </p>
         )}

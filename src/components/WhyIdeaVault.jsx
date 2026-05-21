@@ -5,7 +5,7 @@ export default function WhyIdeaVault() {
         <p className="text-pink-500 font-semibold">Why IdeaVault?</p>
 
         <h2 className="text-4xl font-bold text-gray-900 mt-3">
-          Build Better Ideas With Community Feedback
+          Build Better Ideas With Other's Feedback.
         </h2>
       </div>
 
@@ -13,14 +13,16 @@ export default function WhyIdeaVault() {
         <div className="p-7 rounded-2xl bg-sky-50 border border-sky-100">
           <h3 className="text-2xl font-bold text-sky-600">Share</h3>
           <p className="text-gray-600 mt-3">
-            Publish your startup idea with problem, solution, audience, and budget.
+            Publish your startup ideas with problem, solution and
+            budget.
           </p>
         </div>
 
         <div className="p-7 rounded-2xl bg-purple-50 border border-purple-100">
           <h3 className="text-2xl font-bold text-purple-600">Validate</h3>
           <p className="text-gray-600 mt-3">
-            Get useful comments from users and understand if your idea has value.
+            Get useful advice from users and understand if your idea has
+            value.
           </p>
         </div>
 

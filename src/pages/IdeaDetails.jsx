@@ -42,7 +42,7 @@ export default function IdeaDetails() {
 
     const newComment = {
       ideaId: id,
-      commentText: commentText,
+      commentText,
       userName: user?.displayName,
       userEmail: user?.email,
       userPhoto: user?.photoURL,
@@ -58,12 +58,22 @@ export default function IdeaDetails() {
 
     const data = await response.json();
 
+    if (!user) {
+  toast.error("Please login to comment");
+  return;
+}
+
     if (data.insertedId) {
-      toast.success("Comment added successfully");
+      toast.success("Comment Posted");
       form.reset();
       loadComments();
     }
+    if (!commentText.trim()) {
+  toast.error("Comment cannot be empty");
+  return;
+}
   };
+  
 
   if (loading) {
     return <Spinner />;
@@ -72,7 +82,7 @@ export default function IdeaDetails() {
   if (!idea) {
     return (
       <div className="container-box py-20 text-center">
-        <h1 className="text-4xl font-bold text-red-500">Idea not found</h1>
+        <h1 className="text-4xl font-bold text-red-500">Idea is not found</h1>
       </div>
     );
   }
@@ -110,17 +120,17 @@ export default function IdeaDetails() {
           </div>
 
           <div className="mt-8">
-            <h2 className="text-2xl font-bold">Detailed Description</h2>
+            <h2 className="text-2xl font-bold"> Description</h2>
             <p className="text-gray-600 mt-3">{idea.detailedDescription}</p>
           </div>
 
           <div className="mt-8">
-            <h2 className="text-2xl font-bold">Problem Statement</h2>
+            <h2 className="text-2xl font-bold">Problem</h2>
             <p className="text-gray-600 mt-3">{idea.problemStatement}</p>
           </div>
 
           <div className="mt-8">
-            <h2 className="text-2xl font-bold">Proposed Solution</h2>
+            <h2 className="text-2xl font-bold"> Solution</h2>
             <p className="text-gray-600 mt-3">{idea.proposedSolution}</p>
           </div>
 
@@ -136,9 +146,7 @@ export default function IdeaDetails() {
       </div>
 
       <div className="bg-white border border-purple-100 shadow-xl rounded-3xl p-8 mt-10">
-        <h2 className="text-3xl font-bold text-gray-900">
-          Comments
-        </h2>
+        <h2 className="text-3xl font-bold text-gray-900">Comments</h2>
 
         <form onSubmit={handleAddComment} className="mt-6">
           <textarea
@@ -149,9 +157,7 @@ export default function IdeaDetails() {
             required
           ></textarea>
 
-          <button className="primary-btn mt-4">
-            Add Comment
-          </button>
+          <button className="primary-btn mt-4">Add Comment</button>
         </form>
 
         <div className="mt-8 space-y-5">
@@ -162,7 +168,10 @@ export default function IdeaDetails() {
             >
               <div className="flex items-center gap-3">
                 <img
-                  src={comment.userPhoto || "https://i.ibb.co.com/4pDNDk1/avatar.png"}
+                  src={
+                    comment.userPhoto ||
+                    "https://i.ibb.co.com/4pDNDk1/avatar.png"
+                  }
                   alt="user"
                   className="w-11 h-11 rounded-full"
                 />
@@ -178,15 +187,13 @@ export default function IdeaDetails() {
                 </div>
               </div>
 
-              <p className="text-gray-700 mt-4">
-                {comment.commentText}
-              </p>
+              <p className="text-gray-700 mt-4">{comment.commentText}</p>
             </div>
           ))}
 
           {comments.length === 0 && (
             <p className="text-gray-500">
-              No comments yet. Be the first to comment.
+              No comments yet.You can be the first to comment.
             </p>
           )}
         </div>
